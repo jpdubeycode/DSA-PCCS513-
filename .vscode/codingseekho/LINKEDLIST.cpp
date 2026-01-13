@@ -54,6 +54,25 @@ if(head==NULL){
 
 }
 
+void insert(int val,int pos)
+{
+Node* temp=head;
+Node* newNode=new Node(val);
+
+for(int i=0;i<pos-1;i++){
+if(temp==NULL){
+    cout<<"position is INVALID\n";
+     return ;
+}
+temp=temp->next;
+
+
+}
+newNode->next=temp->next;
+temp->next=newNode;
+
+}
+
 void printList(){
     Node* temp=head;
     while(temp!=NULL){
@@ -77,6 +96,9 @@ int main(){
        LL.push_back(4);
        LL.push_back(5);
          LL.printList();
+         
+           LL.insert(100,3);
+            LL.printList();
 
 
 
