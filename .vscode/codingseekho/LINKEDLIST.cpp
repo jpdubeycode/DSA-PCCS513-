@@ -13,6 +13,15 @@ public:
         data = val;
         next = NULL;
     }
+
+    // ~Node(){
+    //  cout<<"~node"<<data<< endl;
+    //  if (next != NULL)
+    //  {
+    //   delete next;
+    //  next=NULL;
+    //  }
+    //}
 };
 
 class List{
@@ -25,6 +34,14 @@ List(){
     tail=NULL;
     
 }
+// ~List(){
+
+//     cout<<"~list\n";
+//     if(head !=NULL){
+//         delete head;
+//         head=NULL;
+//     }
+// }
 
 void push_front(int val){
 
@@ -72,7 +89,24 @@ newNode->next=temp->next;
 temp->next=newNode;
 
 }
+void pop_front(){
+    Node* temp=head;
+    head=head->next;
+    temp->next=NULL;
+    delete temp;
+}
 
+void pop_back(){
+    Node* temp=head;
+    while(temp->next->next!=NULL){
+        temp=temp->next;
+      
+}
+ temp->next=NULL;
+  delete tail;
+        tail=temp;
+    
+}
 void printList(){
     Node* temp=head;
     while(temp!=NULL){
@@ -83,6 +117,56 @@ void printList(){
     cout<<"NULL\n";
 }
 
+int searchitr(int key){
+    Node* temp=head;
+    int index=0;
+
+    while(temp!=NULL){
+        if(temp->data==key)
+        return index;
+
+        temp=temp->next;
+        index++;
+    }
+
+    return -1;
+}
+
+int helper(Node* temp, int key){
+    if(temp==NULL){
+        return -1;
+    }
+    if(temp->data==key){
+        return 0;
+
+    }
+    int idx=helper(temp->next,key);
+    if(idx==-1){
+        return -1;
+    }
+
+    return idx+1;
+}
+int searchRec(int key){
+    return helper(head,key);
+}
+
+
+//Reverse linked list
+
+void Reverse(){
+    Node* curr=head;
+    Node* prev=NULL;
+    Node* next=NULL;
+
+    while(curr!=NULL){
+        next=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=next;
+    }
+    head=prev;
+}
 };
 
 int main(){
@@ -93,13 +177,16 @@ int main(){
       LL.push_front(1);
       LL.printList();
     
-       LL.push_back(4);
-       LL.push_back(5);
-         LL.printList();
+    //    LL.push_back(4);
+    //    LL.push_back(5);
+    //      LL.printList();
          
-           LL.insert(100,3);
-            LL.printList();
-
+    //        LL.insert(100,3);
+    //         LL.printList();
+    //         LL.pop_front();
+    //           LL.printList();
+    //           LL.pop_back();
+    //           LL.printList();
 
 
 }
